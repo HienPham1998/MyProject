@@ -35,8 +35,8 @@ class AddressController extends Controller
 
             $filename = time().'.'.$img->getClientOriginalExtension();
 
-            Image::make($img)->resize(800, 600)->save(public_path('/client/assets/img/'.$filename));
-            $address->photos = ['/client/assets/img/' . $filename];
+            Image::make($img)->save(public_path(config('files.paths.photos').$filename));
+            $address->photos = [$filename];
 
         }
         $address->user_id = Auth::user()->id;
